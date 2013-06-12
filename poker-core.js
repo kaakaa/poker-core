@@ -54,7 +54,11 @@ poker.core.getHandCategory = function(cards) {
   console.log(pairs);
 
   if(pairs[0].val == 3){
-    return poker.handCategory.THREE_OF_A_KIND;
+    if(pairs[1].val == 2){
+      return poker.handCategory.FULL_HOUSE;
+    } else {
+      return poker.handCategory.THREE_OF_A_KIND;
+    }
   }
 
   if(pairs[0].val == 2){
