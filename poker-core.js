@@ -36,6 +36,8 @@ poker.core = {};
  * @returns poker.handCategory のどれか。
  */
 poker.core.getHandCategory = function(cards) {
+  // TODO 役判定の順番を考える必要がある
+
   // カードの数字を扱う連想配列を生成
   var numcount = {};
   for(var i = 1; i <= 13; i++) {
@@ -45,6 +47,7 @@ poker.core.getHandCategory = function(cards) {
   // カードの数値をカウント
   for(var i = 0; i < cards.length; i++){
     numcount[cards[i]["rank"]]++;
+    // TODO suitに関する解析。すべて同じマークか否かのみを判定する。
   }
 
   // カードの数値を数の多い順にソート
