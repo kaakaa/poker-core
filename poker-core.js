@@ -53,6 +53,10 @@ poker.core.getHandCategory = function(cards) {
   pairs.sort(countSort);
   console.log(pairs);
 
+  if(pairs[0].val == 4){
+    return poker.handCategory.FOUR_OF_A_KIND;
+  }
+
   if(pairs[0].val == 3){
     if(pairs[1].val == 2){
       return poker.handCategory.FULL_HOUSE;
