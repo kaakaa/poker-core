@@ -53,6 +53,10 @@ poker.core.getHandCategory = function(cards) {
   pairs.sort(countSort);
   console.log(pairs);
 
+  if(pairs[0].val == 3){
+    return poker.handCategory.THREE_OF_A_KIND;
+  }
+
   if(pairs[0].val == 2){
     if(pairs[1].val == 2){
       return poker.handCategory.TWO_PAIR;
