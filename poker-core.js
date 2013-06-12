@@ -54,7 +54,11 @@ poker.core.getHandCategory = function(cards) {
   console.log(pairs);
 
   if(pairs[0].val == 2){
-    return poker.handCategory.ONE_PAIR;
+    if(pairs[1].val == 2){
+      return poker.handCategory.TWO_PAIR;
+    } else {
+    	return poker.handCategory.ONE_PAIR;
+    }
   }
 
   // どの組み合わせにも当てはまらないならば、ハイカードを返す。
