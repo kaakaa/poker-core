@@ -46,14 +46,21 @@ poker.core.getHandCategory = function(cards) {
     numcount[cards[i]["rank"]]++;
   }
 
-  console.log(numcount);
+  var pairs = new Array();
+  for(var key in numcount){
+    pairs.push({'key':key, val:numcount[key]});
+  }
+  pairs.sort(countSort);
+  console.log(pairs);
 
-  for(var i = 1; i <= 13; i++){
-    if(numcount[i] == 2){
-      return poker.handCategory.ONE_PAIR;
-    }
+  if(pairs[0].val == 2){
+    return poker.handCategory.ONE_PAIR;
   }
 
   // どの組み合わせにも当てはまらないならば、ハイカードを返す。
   return poker.handCategory.HIGH_CARD;
+}
+
+function countSort(a,b){
+  return (a.val < b.val) ? 1 : -1;
 }
