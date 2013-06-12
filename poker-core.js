@@ -36,23 +36,25 @@ poker.core = {};
  * @returns poker.handCategory のどれか。
  */
 poker.core.getHandCategory = function(cards) {
-  // TODO: ここに処理を実装します。
+  // カードの数字を扱う連想配列を生成
   var numcount = {};
   for(var i = 1; i <= 13; i++) {
     numcount[i] = 0;
   }
 
+  // カードの数値をカウント
   for(var i = 0; i < cards.length; i++){
     numcount[cards[i]["rank"]]++;
   }
 
+  // カードの数値を数の多い順にソート
   var pairs = new Array();
   for(var key in numcount){
     pairs.push({'key':key, val:numcount[key]});
   }
   pairs.sort(countSort);
-  console.log(pairs);
 
+  // 数値に関する役の判定
   if(pairs[0].val == 4){
     return poker.handCategory.FOUR_OF_A_KIND;
   }
