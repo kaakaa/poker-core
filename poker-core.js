@@ -37,10 +37,23 @@ poker.core = {};
  */
 poker.core.getHandCategory = function(cards) {
   // TODO: ここに処理を実装します。
+  var numcount = {};
+  for(var i = 1; i <= 13; i++) {
+    numcount[i] = 0;
+  }
 
+  for(var i = 0; i < cards.length; i++){
+    numcount[cards[i]["rank"]]++;
+  }
 
+  console.log(numcount);
+
+  for(var i = 1; i <= 13; i++){
+    if(numcount[i] == 2){
+      return poker.handCategory.ONE_PAIR;
+    }
+  }
 
   // どの組み合わせにも当てはまらないならば、ハイカードを返す。
   return poker.handCategory.HIGH_CARD;
 }
-
