@@ -44,10 +44,18 @@ poker.core.getHandCategory = function(cards) {
     numcount[i] = 0;
   }
 
+  var suitcount = {"♣":0, "♦":0, "♥":0, "♠":0}
+
   // カードの数値をカウント
   for(var i = 0; i < cards.length; i++){
     numcount[cards[i]["rank"]]++;
-    // TODO suitに関する解析。すべて同じマークか否かのみを判定する。
+    suitcount[cards[i]["suit"]]++;
+  }
+
+  for(var key in suitcount){
+    if(suitcount[key] == 5){
+      return poker.handCategory.FLUSH;
+    }
   }
 
   // カードの数値を数の多い順にソート
