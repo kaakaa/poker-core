@@ -61,9 +61,15 @@ poker.core.getHandCategory = function(cards) {
   // カードの数値を数の多い順にソート
   var pairs = new Array();
   for(var key in numcount){
-    pairs.push({'key':key, val:numcount[key]});
+    pairs.push({num:key, val:numcount[key]});
   }
   pairs.sort(countSort);
+
+  if(pairs[0].val == 1){
+    if((pairs[4].num - pairs[0].num) == 4){
+     return poker.handCategory.STRAIGHT;
+    }
+  }
 
   // 数値に関する役の判定
   if(pairs[0].val == 4){
