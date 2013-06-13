@@ -52,11 +52,6 @@ poker.core.getHandCategory = function(cards) {
     suitcount[cards[i]["suit"]]++;
   }
 
-  for(var key in suitcount){
-    if(suitcount[key] == 5){
-      return poker.handCategory.FLUSH;
-    }
-  }
 
   // カードの数値を数の多い順にソート
   var pairs = new Array();
@@ -67,8 +62,16 @@ poker.core.getHandCategory = function(cards) {
 
   if(pairs[0].val == 1){
     if((pairs[4].num - pairs[0].num) == 4){
-     return poker.handCategory.STRAIGHT;
+      if(isFlush(suitcount)){
+        return poker.handCategory.STRAIGHT_FLUSH;
+      } else {
+         return poker.handCategory.STRAIGHT;
+      }
     }
+  }
+
+  if(isFlush(suitcount)){
+    return poker.handCategory.FLUSH;
   }
 
   // 数値に関する役の判定
@@ -98,4 +101,13 @@ poker.core.getHandCategory = function(cards) {
 
 function countSort(a,b){
   return (a.val < b.val) ? 1 : -1;
+}
+
+function isFlush(suitcount){
+  for(var key in suitcount){
+    if(suitcount[key] == 5){
+      return true;
+    }
+  }
+  return false;
 }
