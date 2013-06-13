@@ -71,7 +71,11 @@ poker.core.getHandCategory = function(cards) {
   }
 
   if(isFlush(suitcount)){
-    return poker.handCategory.FLUSH;
+    if(pairs[0].num == 1 && pairs[1].num == 10){
+      return poker.handCategory.ROYAL_FLUSH;
+    } else {
+      return poker.handCategory.FLUSH;
+    }
   }
 
   // 数値に関する役の判定
